@@ -1,0 +1,50 @@
+{
+    "links": {
+        "sharing": {
+            "all": null,
+            "facebook": null,
+            "google": null,
+            "twitter": null,
+            "weibo": null
+        },
+        "sidebar": {
+            "XuToTo's Blog": "http://xutoto.im"
+        }
+    },
+    "plugins": [
+        "-lunr",
+        "-search",
+        "search-plus",
+        "anchors",
+        "theme-comscore",
+        "tbfed-pagefooter",
+        "prism",
+        "-highlight",
+        "-sharing",
+        "alerts",
+        "github-buttons"
+    ],
+    "pluginsConfig": {
+        "tbfed-pagefooter": {
+            "copyright": "&copy <a xmlns:cc=\"http://creativecommons.org/ns#\" href=\"http://xutoto.im\" property=\"cc:attributionName\" rel=\"cc:attributionURL\">XuToTo</a> · 遵循 <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>",
+            "modify_label": "最近更新：",
+            "modify_format": "YYYY-MM-DD HH:mm"
+        },
+        "prism": {
+            "css": [
+                "prismjs/themes/prism-tomorrow.css"
+            ]
+        },
+        "github-buttons": {
+            "buttons": [
+                {
+                    "user": "XuToTo",
+                    "repo": "sanic-docs-zh",
+                    "type": "star",
+                    "size": "small",
+                    "count": true
+                }
+            ]
+        }
+    }
+}

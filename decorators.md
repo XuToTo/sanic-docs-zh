@@ -1,8 +1,8 @@
-# Handler Decorators
+# 处理函数装饰器
 
 Since Sanic handlers are simple Python functions, you can apply decorators to them in a similar manner to Flask. A typical use case is when you want some code to run before a handler's code is executed.
 
-## Authorization Decorator
+## 认证装饰器
 
 Let's say you want to check that a user is authorized to access a particular endpoint. You can create a decorator that wraps a handler function, checks a request if the client is authorized to access a resource, and sends the appropriate response.
 

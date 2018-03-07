@@ -1,0 +1,19 @@
+{
+  "name": "sanic-docs-zh",
+  "version": "0.0.0",
+  "description": "Sanic 中文文档",
+  "scripts":{
+    "push": "timestamp=$(date) && git commit -m \"update $timestamp\"&& git push",
+    "skip": "timestamp=$(date) && git commit -m \"update $timestamp [skip ci]\"&& git push"
+  },
+  "dependencies": {
+    "gitbook-plugin-anchors": "^0.7.1",
+    "gitbook-plugin-prism": "^2.3.0",
+    "gitbook-plugin-tbfed-pagefooter": "^0.0.1",
+    "gitbook-plugin-theme-comscore": "^0.0.3",
+    "gitbook-theme-clarity": "^0.0.2",
+    "gitbook-theme-comscore": "^0.0.3"
+  },
+  "author": "XuToTo",
+  "license": "ISC"
+}
