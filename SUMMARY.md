@@ -1,6 +1,6 @@
 # Summary
 
-* [Sanic 0.7.9 中文文档](README.md)
+* [Sanic 0.7.0 中文文档](README.md)
 * [入门](getting_started.md)
 * [路由](routing.md)
 * [请求数据](request_data.md)
@@ -10,7 +10,7 @@
 * [中间件和监听器](middleware.md)
 * [蓝图](blueprints.md)
 * [配置](config.md)
-* [Cookies]()
+* [Cookies](cookies.md)
 * [处理函数装饰器](decorators.md)
 * [流](streaming.md)
 * [类视图](class_based_views.md)
