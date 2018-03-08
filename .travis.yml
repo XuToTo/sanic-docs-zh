@@ -19,6 +19,8 @@ install:
 # 构建脚本
 script:
     # 自定义输出目录 gitbook build src dest
+  - git clone https://github.com/XuToTo/GitBook build
+  - rm -rf ./build/$CUSTOM_PATH
   - gitbook build . ./build/$CUSTOM_PATH
 
 # 分支白名单
@@ -30,7 +32,7 @@ branches:
 deploy:
   provider: pages
   skip_cleanup: true
-  keep_history: true
+  # keep_history: true
   # 在项目仪表盘的 Settings -> Environment Variables 中配置
   github_token: $GITHUB_TOKEN
   # 将 build 目录下的内容推送到默认的 gh-pages 分支上
