@@ -95,8 +95,8 @@ The following variables are accessible as properties on `Request` objects:
           return json({'status': 'debug'})
       else:
           return json({'status': 'production'})
-
   ```
+
 - `url`: The full URL of the request, ie: `http://localhost:8000/posts/1/?foo=bar`
 - `scheme`: The URL scheme associated with the request: `http` or `https`
 - `host`: The host associated with the request: `localhost:8080`

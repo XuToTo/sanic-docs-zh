@@ -110,7 +110,6 @@ async def setup_db(app, loop):
     app.db = await db_setup()
 
 app.register_listener(setup_db, 'before_server_start')
-
 ```
 
 If you want to schedule a background task to run after the loop has started,

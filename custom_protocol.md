@@ -39,7 +39,6 @@ from sanic.response import text
 
 app = Sanic(__name__)
 
-
 class CustomHttpProtocol(HttpProtocol):
 
     def __init__(self, *, loop, request_handler, error_handler,
@@ -58,11 +57,9 @@ class CustomHttpProtocol(HttpProtocol):
         )
         self.transport.close()
 
-
 @app.route('/')
 async def string(request):
     return 'string'
-
 
 @app.route('/1')
 async def response(request):

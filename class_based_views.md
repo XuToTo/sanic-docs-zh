@@ -45,7 +45,6 @@ class SimpleView(HTTPMethodView):
       return text('I am delete method')
 
 app.add_route(SimpleView.as_view(), '/')
-
 ```
 
 You can also use `async` syntax.
@@ -63,7 +62,6 @@ class SimpleAsyncView(HTTPMethodView):
       return text('I am async get method')
 
 app.add_route(SimpleAsyncView.as_view(), '/')
-
 ```
 
 ## URL parameters
@@ -123,15 +121,12 @@ def index(request):
     url = app.url_for('SpecialClassView')
     return redirect(url)
 
-
 class SpecialClassView(HTTPMethodView):
     def get(self, request):
         return text('Hello from the Special Class View!')
 
-
 app.add_route(SpecialClassView.as_view(), '/special_class_view')
 ```
-
 
 ## Using CompositionView
 

@@ -7,7 +7,6 @@ Use functions in `sanic.response` module to create responses.
 ```python
 from sanic import response
 
-
 @app.route('/text')
 def handle_request(request):
     return response.text('Hello world!')
@@ -17,7 +16,6 @@ def handle_request(request):
 
 ```python
 from sanic import response
-
 
 @app.route('/html')
 def handle_request(request):
@@ -29,7 +27,6 @@ def handle_request(request):
 ```python
 from sanic import response
 
-
 @app.route('/json')
 def handle_request(request):
     return response.json({'message': 'Hello world!'})
@@ -39,7 +36,6 @@ def handle_request(request):
 
 ```python
 from sanic import response
-
 
 @app.route('/file')
 async def handle_request(request):
@@ -76,7 +72,6 @@ async def handle_request(request):
 ```python
 from sanic import response
 
-
 @app.route('/redirect')
 def handle_request(request):
     return response.redirect('/json')
@@ -89,7 +84,6 @@ Response without encoding the body
 ```python
 from sanic import response
 
-
 @app.route('/raw')
 def handle_request(request):
     return response.raw(b'raw data')
@@ -101,7 +95,6 @@ To modify headers or status code, pass the `headers` or `status` argument to tho
 
 ```python
 from sanic import response
-
 
 @app.route('/json')
 def handle_request(request):

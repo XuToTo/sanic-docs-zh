@@ -5,17 +5,14 @@ Instead of adding routes to the application instance, blueprints define similar
 methods for adding routes, which are then registered with the application in a
 flexible and pluggable manner.
 
-Blueprints are especially useful for larger applications, where your
-application logic can be broken down into several groups or areas of
-responsibility.
+蓝图对于大型的应用程序来说十分有用，你可以将应用程序的逻辑可以拆分成几个组或是职责分区。
 
 ## 我的第一个蓝图
 
 The following shows a very simple blueprint that registers a handler-function at
 the root `/` of your application.
 
-Suppose you save this file as `my_blueprint.py`, which can be imported into your
-main application later.
+假如你把这个文件保存为 `my_blueprint.py`，之后你就可以把它导入到你的主应用程序中了。
 
 ```python
 from sanic.response import json
@@ -26,12 +23,11 @@ bp = Blueprint('my_blueprint')
 @bp.route('/')
 async def bp_root(request):
     return json({'my': 'blueprint'})
-
 ```
 
 ## 注册蓝图
 
-Blueprints must be registered with the application.
+蓝图必须在应用程序中注册后才能使用。
 
 ```python
 from sanic import Sanic
@@ -122,16 +118,16 @@ app = Sanic(__name__)
 app.blueprint(api)
 ```
 
-## Using blueprints
+## 使用蓝图
 
-Blueprints have much the same functionality as an application instance.
+蓝图有许多和应用实例相同的功能。
 
-### WebSocket routes
+### WebSocket 路由
 
 WebSocket handlers can be registered on a blueprint using the `@bp.websocket`
 decorator or `bp.add_websocket_route` method.
 
-### Middleware
+### 中间件
 
 Using blueprints allows you to also register middleware globally.
 
@@ -149,7 +145,7 @@ async def halt_response(request, response):
     return text('I halted the response')
 ```
 
-### Exceptions
+### 异常
 
 Exceptions can be applied exclusively to blueprints globally.
 
@@ -159,7 +155,7 @@ def ignore_404s(request, exception):
     return text("Yep, I totally found the page: {}".format(request.url))
 ```
 
-### Static files
+### 静态文件
 
 Static files can be served globally, under the blueprint prefix.
 
@@ -171,16 +167,15 @@ bp.static('/web/path', '/folder/to/serve')
 # also you can pass name parameter to it for url_for
 bp.static('/web/path', '/folder/to/server', name='uploads')
 app.url_for('static', name='bp.uploads', filename='file.txt') == '/bp/web/path/file.txt'
-
 ```
 
-## Start and stop
+## 启动和停止
 
 Blueprints can run functions during the start and stop process of the server.
 If running in multiprocessor mode (more than 1 worker), these are triggered
 after the workers fork.
 
-Available events are:
+可用的事件有：
 
 - `before_server_start`: Executed before the server begins to accept connections
 - `after_server_start`: Executed after the server begins to accept connections
@@ -200,7 +195,7 @@ async def close_connection(app, loop):
     await database.close()
 ```
 
-## Use-case: API versioning
+## 用例：API 的版本控制
 
 Blueprints can be very useful for API versioning, where one blueprint may point
 at `/v1/<routes>`, and another pointing at `/v2/<routes>`.
@@ -242,9 +237,9 @@ app.blueprint(blueprint_v2, url_prefix='/v2')
 app.run(host='0.0.0.0', port=8000, debug=True)
 ```
 
-## URL Building with `url_for`
+## 使用 `url_for` 构建 URL
 
-If you wish to generate a URL for a route inside of a blueprint, remember that the endpoint name
+如果你希望在蓝图中为一个路由生成一个 URL，remember that the endpoint name
 takes the format `<blueprint_name>.<handler_name>`. For example:
 
 ```python

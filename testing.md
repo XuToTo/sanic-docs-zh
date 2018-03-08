@@ -53,11 +53,9 @@ def test_post_json_request_includes_data():
     assert request.json.get('key1') == 'value1'
 ```
 
-
 More information about
 the available arguments to aiohttp can be found
 [in the documentation for ClientSession](https://aiohttp.readthedocs.io/en/stable/client_reference.html#client-session).
-
 
 ## pytest-sanic
 

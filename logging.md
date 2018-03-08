@@ -65,18 +65,14 @@ Sanic provides additional parameters for access logger with:
 - host (str)<br>
   request.ip
 
-
 - request (str)<br>
   request.method + " " + request.url
-
 
 - status (int)<br>
   response.status
 
-
 - byte (int)<br>
   len(response.body)
-
 
 The default access log format is
 

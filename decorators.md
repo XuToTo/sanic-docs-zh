@@ -29,7 +29,6 @@ def authorized():
         return decorated_function
     return decorator
 
-
 @app.route("/")
 @authorized()
 async def test(request):

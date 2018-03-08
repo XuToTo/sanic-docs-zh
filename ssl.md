@@ -4,6 +4,7 @@ Optionally pass in an SSLContext:
 
 ```python
 import ssl
+
 context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
 context.load_cert_chain("/path/to/cert", keyfile="/path/to/keyfile")
 

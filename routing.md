@@ -12,7 +12,7 @@ async def test(request):
     return json({ "hello": "world" })
 ```
 
-当地址 `http://server.url/` 被访问时 (the base url of the server)，最后的那个 `/` 会被路由匹配到 `test` 处理函数，这个函数返回了一个 JSON 对象。
+当访问地址 `http://server.url/` （服务的根地址）时，最后的那个 `/` 会被路由匹配到 `test` 处理函数，这个函数返回了一个 JSON 对象。
 
 Sanic 处理函数**必须**使用 `async def` 语法定义，因为它们都是异步函数。
 

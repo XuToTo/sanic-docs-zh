@@ -1,8 +1,8 @@
-# Versioning
+# 版本控制
 
 You can pass the `version` keyword to the route decorators, or to a blueprint initializer. It will result in the `v{version}` url prefix where `{version}` is the version number.
 
-## Per route
+## 每个路由的版本
 
 You can pass a version number to the routes directly.
 
@@ -28,7 +28,7 @@ curl localhost/v1/text
 curl localhost/v2/text
 ```
 
-## Global blueprint version
+## 蓝图的全局版本
 
 You can also pass a version number to the blueprint, which will apply to all routes.
 
