@@ -1,11 +1,10 @@
 # 请求数据
 
-When an endpoint receives a HTTP request, the route function is passed a
-`Request` object.
+当端点接收到 HTTP 请求时，`Request` 对象就会传入到路由函数。
 
-The following variables are accessible as properties on `Request` objects:
+下面这些变量都是 `Request` 对象中可以访问的属性：
 
-- `json` (any) - JSON body
+- `json` (any) - JSON 请求体
 
   ```python
   from sanic.response import json
@@ -15,10 +14,7 @@ The following variables are accessible as properties on `Request` objects:
       return json({ "received": True, "message": request.json })
   ```
 
-- `args` (dict) - Query string variables. A query string is the section of a
-  URL that resembles `?key1=value1&key2=value2`. If that URL were to be parsed,
-  the `args` dictionary would look like `{'key1': ['value1'], 'key2': ['value2']}`.
-  The request's `query_string` variable holds the unparsed string value.
+- `args` (dict) - 查询字段变量。查询字段是 URL 中一段类似于 `?key1=value1&key2=value2` 的部分。中如果解析刚才的 URL，`args` 字典看上去会是这样的 `{'key1': ['value1'], 'key2': ['value2']}`。请求的 `query_string` 变量保存着未被解析的字符串值。
 
   ```python
   from sanic.response import json
@@ -28,11 +24,9 @@ The following variables are accessible as properties on `Request` objects:
       return json({ "parsed": True, "args": request.args, "url": request.url, "query_string": request.query_string })
   ```
 
-- `raw_args` (dict) - On many cases you would need to access the url arguments in
-  a less packed dictionary. For same previous URL `?key1=value1&key2=value2`, the
-  `raw_args` dictionary would look like `{'key1': 'value1', 'key2': 'value2'}`.
+- 许多情况下你需要从已经封装好的字典中获取 URL 参数。对于和之前相同的 URL `?key1=value1&key2=value2` 来说，`raw_args` 字典是这样的 {'key1': 'value1', 'key2': 'value2'}`。
 
-- `files` (dictionary of `File` objects) - List of files that have a name, body, and type
+- `files` (`File` 对象的字典) - 拥有 `name`、`body` 和 `type` 属性的文件对象列表
 
   ```python
   from sanic.response import json
@@ -50,7 +44,7 @@ The following variables are accessible as properties on `Request` objects:
       return json({ "received": True, "file_names": request.files.keys(), "test_file_parameters": file_parameters })
   ```
 
-- `form` (dict) - Posted form variables.
+- `form` (dict) - POST 表格变量
 
   ```python
   from sanic.response import json
@@ -60,8 +54,7 @@ The following variables are accessible as properties on `Request` objects:
       return json({ "received": True, "form_data": request.form, "test": request.form.get('test') })
   ```
 
-- `body` (bytes) - Posted raw body. This property allows retrieval of the
-  request's raw data, regardless of content type.
+- `body` (bytes) - 原始 POST 请求体。这个属性可以无视内容类型直接获取请求的原始数据
 
   ```python
   from sanic.response import text
@@ -71,17 +64,17 @@ The following variables are accessible as properties on `Request` objects:
       return text("You are trying to create a user with the following POST: %s" % request.body)
   ```
 
-- `headers` (dict) - A case-insensitive dictionary that contains the request headers.
+- `headers` (dict) - 一个包含请求头部并且大小写不敏感的字典
 
-- `method` (str) - HTTP method of the request (ie `GET`, `POST`).
+- `method` (str) - 请求的 HTTP 方法（即 `GET`，`POST`）
 
-- `ip` (str) - IP address of the requester.
+- `ip` (str) - 请求者的 IP 地址
 
-- `port` (str) - Port address of the requester.
+- `port` (str) - 请求者的端口地址
 
-- `socket` (tuple) - (IP, port) of the requester.
+- `socket` (tuple) - 请求者的 `(IP, port)`
 
-- `app` - a reference to the Sanic application object that is handling this request. This is useful when inside blueprints or other handlers in modules that do not have access to the global `app` object.
+- `app` - 一个用于处理当前请求的 Sanic 应用程序对象的引用。当内部蓝图或是模块中的处理函数无法访问全局 `app` 对象时，这个属性会很有帮助
 
   ```python
   from sanic.response import json
@@ -97,23 +90,20 @@ The following variables are accessible as properties on `Request` objects:
           return json({'status': 'production'})
   ```
 
-- `url`: The full URL of the request, ie: `http://localhost:8000/posts/1/?foo=bar`
-- `scheme`: The URL scheme associated with the request: `http` or `https`
-- `host`: The host associated with the request: `localhost:8080`
-- `path`: The path of the request: `/posts/1/`
-- `query_string`: The query string of the request: `foo=bar` or a blank string `''`
-- `uri_template`: Template for matching route handler: `/posts/<id>/`
-- `token`: The value of Authorization header: `Basic YWRtaW46YWRtaW4=`
+- `url`: 完整的请求 URL， 即 `http://localhost:8000/posts/1/?foo=bar`
+- `scheme`: 请求的 HTTP 模式： `http` 或 `https`
+- `host`: 请求的主机：`localhost:8080`
+- `path`: 请求的路径：`/posts/1/`
+- `query_string`: 请求的查询字段：`foo=bar` 或是一个空字符串 `''`
+- `uri_template`: 用于匹配路由处理函数的模板：`/posts/<id>/`
+- `token`: 授权请求头部的值： `Basic YWRtaW46YWRtaW4=`
 
-## Accessing values using `get` and `getlist`
+## 使用 `get` 和 `getlist` 获取值
 
-The request properties which return a dictionary actually return a subclass of
-`dict` called `RequestParameters`. The key difference when using this object is
-the distinction between the `get` and `getlist` methods.
+作为字典返回的请求属性实际上是名为 `RequestParameters` 的 `dict` 子类。这个对象使用 `get` 和 `getlist` 两个方法所得到的结果是有所区别的。
 
-- `get(key, default=None)` operates as normal, except that when the value of
-  the given key is a list, *only the first item is returned*.
-- `getlist(key, default=None)` operates as normal, *returning the entire list*.
+- `get(key, default=None)` 正常情况下， 当 `key` 对应的值是一个列表时*只有第一项会被返回*
+- `getlist(key, default=None)` 正常情况下*返回整个列表*
 
 ```python
 from sanic.request import RequestParameters
