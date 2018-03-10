@@ -149,14 +149,14 @@ url = app.url_for('post_handler', post_id=5, arg_one='one', arg_two='two')
 # /posts/5?arg_one=one&arg_two=two
 ```
 
-- Multivalue argument can be passed to `url_for`. For example:
+- `url_for` 可以传入多值参数。例如：
 
 ```python
 url = app.url_for('post_handler', post_id=5, arg_one=['one', 'two'])
 # /posts/5?arg_one=one&arg_one=two
 ```
 
-- Also some special arguments (`_anchor`, `_external`, `_scheme`, `_method`, `_server`) passed to `url_for` will have special url building (`_method` is not support now and will be ignored). For example:
+- 一些传入 `url_for` 的特殊参数（`_anchor`，`_external`，`_scheme`，`_method`，`_server`）可以构建出特殊的 URL（`_method` 现在还不支持，它将会被忽略）。例如：
 
 ```python
 url = app.url_for('post_handler', post_id=5, arg_one='one', _anchor='anchor')
@@ -175,7 +175,7 @@ url = app.url_for('post_handler', post_id=5, arg_one=['one', 'two'], arg_two=2, 
 # http://another_server:8888/posts/5?arg_one=one&arg_one=two&arg_two=2#anchor
 ```
 
-- All valid parameters must be passed to `url_for` to build a URL. If a parameter is not supplied, or if a parameter does not match the specified type, a `URLBuildError` will be thrown.
+- 所有传入 `url_for` 用来构建 URL 的参数都必须是合法有效的。如果没有提供参数，或是参数与指定的类型不匹配，都会导致 `URLBuildError` 被抛出。
 
 ## WebSocket 路由
 
@@ -201,10 +201,9 @@ async def feed(request, ws):
 app.add_websocket_route(my_websocket_handler, '/feed')
 ```
 
-Handlers for a WebSocket route are passed the request as first argument, and a WebSocket protocol object as second argument. The protocol object has `send` and `recv` methods to send and receive data respectively.
+请求对象作为 WebSocket 路由处理函数的第一个参数传入，WebSocket 协议对象作为第二个参数。协议对象包括 `send` 和 `recv` 两个方法分别用来发送和接收数据。
 
-WebSocket support requires the [websockets](https://github.com/aaugustin/websockets)
-package by Aymeric Augustin.
+WebSocket 支持需要 Aymeric Augustin 编写的 [websockets](https://github.com/aaugustin/websockets) 包。
 
 ## 关于 `strict_slashes`
 
