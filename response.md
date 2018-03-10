@@ -1,6 +1,6 @@
 # 响应
 
-Use functions in `sanic.response` module to create responses.
+使用 `sanic.response` 模块中的函数可以创建响应。
 
 ## 纯文本
 
@@ -42,7 +42,7 @@ async def handle_request(request):
     return await response.file('/srv/www/whatever.png')
 ```
 
-## Streaming
+## 流
 
 ```python
 from sanic import response
@@ -57,7 +57,7 @@ async def index(request):
 
 ## 文件流
 
-For large files, a combination of File and Streaming above
+结合了上面的文件和流来处理大的文件
 
 ```python
 from sanic import response
@@ -67,7 +67,7 @@ async def handle_request(request):
     return await response.file_stream('/srv/www/whatever.png')
 ```
 
-## Redirect
+## 重定向
 
 ```python
 from sanic import response
@@ -79,7 +79,7 @@ def handle_request(request):
 
 ## Raw
 
-Response without encoding the body
+未编码的响应体
 
 ```python
 from sanic import response
@@ -89,9 +89,9 @@ def handle_request(request):
     return response.raw(b'raw data')
 ```
 
-## Modify headers or status
+## 修改响应头部和状态码
 
-To modify headers or status code, pass the `headers` or `status` argument to those functions:
+向那些函数中传入 `headers` 或 `status` 参数可以修改响应头部或状态码：
 
 ```python
 from sanic import response
