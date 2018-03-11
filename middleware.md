@@ -1,19 +1,14 @@
 # 中间件和监听器
 
-Middleware are functions which are executed before or after requests to the
-server. They can be used to modify the *request to* or *response from*
-user-defined handler functions.
+中间件是可以在请求服务前后执行的函数。它们可以用来修改发送到用户定义的处理函数中的请求或是来自其中的响应。
 
-Additionally, Sanic provides listeners which allow you to run code at various points of your application's lifecycle.
+此外，Sanic 还提供了监听器，允许你在应用生命周期的各个点执行代码。
 
 ## 中间件
 
-There are two types of middleware: request and response. Both are declared
-using the `@app.middleware` decorator, with the decorator's parameter being a
-string representing its type: `'request'` or `'response'`. Response middleware
-receives both the request and the response as arguments.
+中间件的类型有两种： request 和 response。两者都使用 `@app.middleware` 装饰器进行声明，并接受一个代表类型的字符串参数：`'request'` 或 `'response'`。其中，响应中间件接收请求和响应作为参数。
 
-The simplest middleware doesn't modify the request or response at all:
+最简单的中间件就是根本不去修改 `request` 或者 `response`：
 
 ```python
 @app.middleware('request')
@@ -27,9 +22,7 @@ async def print_on_response(request, response):
 
 ## 修改请求和响应
 
-Middleware can modify the request or response parameter it is given, *as long
-as it does not return it*. The following example shows a practical use-case for
-this.
+中间件可以修改传入的请求或是响应参数，*只要不返回它*。以下示例展示了部分用例：
 
 ```python
 app = Sanic(__name__)
@@ -45,18 +38,13 @@ async def prevent_xss(request, response):
 app.run(host="0.0.0.0", port=8000)
 ```
 
-The above code will apply the two middleware in order. First, the middleware
-**custom_banner** will change the HTTP response header *Server* to
-*Fake-Server*, and the second middleware **prevent_xss** will add the HTTP
-header for preventing Cross-Site-Scripting (XSS) attacks. These two functions
-are invoked *after* a user function returns a response.
+上面的代码将会按顺序应用两个中间件。第一个 **custom_banner** 中间件将会把 HTTP 响应头部中的 *Server* 改成 *Fake-Server*，第二个中间件 **prevent_xss** 会添加用来阻止跨站脚本（XSS）攻击的 HTTP 头部。这两个函数都会在用户函数返回响应后被调用。
 
-## Responding early
+## 提前响应
 
-If middleware returns a `HTTPResponse` object, the request will stop processing
-and the response will be returned. If this occurs to a request before the
-relevant user route handler is reached, the handler will never be called.
-Returning a response will also prevent any further middleware from running.
+如果中间件返回一个 `HTTPResponse` 对象，那么将会停止处理请求，然后返回响应。如果返回发生在请求到达相关用户路由处理函数之前，那么这个处理函数就永远不会被调用。
+
+返回响应将会阻断任何在此之后执行的中间件。
 
 ```python
 @app.middleware('request')
@@ -70,16 +58,16 @@ async def halt_response(request, response):
 
 ## 监听器
 
-If you want to execute startup/teardown code as your server starts or closes, you can use the following listeners:
+如果你想在服务启动或关闭时执行启动/终止代码，你可以使用下面这些监听器：
 
 - `before_server_start`
 - `after_server_start`
 - `before_server_stop`
 - `after_server_stop`
 
-These listeners are implemented as decorators on functions which accept the app object as well as the asyncio loop. 
+这些监听器以装饰器的形式应用在函数上，它们接受 `app` 对象还有 `asyncio` 循环。
 
-For example:
+例如：
 
 ```python
 @app.listener('before_server_start')
@@ -99,9 +87,9 @@ async def close_db(app, loop):
     await app.db.close()
 ```
 
-It's also possible to register a listener using the `register_listener` method.
-This may be useful if you define your listeners in another module besides
-the one you instantiate your app in.
+还可以使用 `register_listener` 方法注册监听器。
+
+如果你在实例化应用之外的模块中定义了监听器，那么这个方法就会很有用了。
 
 ```python
 app = Sanic()
@@ -112,8 +100,7 @@ async def setup_db(app, loop):
 app.register_listener(setup_db, 'before_server_start')
 ```
 
-If you want to schedule a background task to run after the loop has started,
-Sanic provides the `add_task` method to easily do so.
+如果你想要在循环开始后计划执行一个后台任务，Sanic 提供了 `add_task` 方法可以轻松实现。
 
 ```python
 async def notify_server_started_after_five_seconds():
@@ -123,7 +110,7 @@ async def notify_server_started_after_five_seconds():
 app.add_task(notify_server_started_after_five_seconds())
 ```
 
-Sanic will attempt to automatically inject the app, passing it as an argument to the task:
+Sanic 会试图自动地注入 `app`，将其作为一个参数传入任务函数中：
 
 ```python
 async def notify_server_started_after_five_seconds(app):
@@ -133,7 +120,7 @@ async def notify_server_started_after_five_seconds(app):
 app.add_task(notify_server_started_after_five_seconds)
 ```
 
-Or you can pass the app explicitly for the same effect:
+或者你可以显示地传递 `app`，效果是一样的：
 
 ```python
 async def notify_server_started_after_five_seconds(app):
