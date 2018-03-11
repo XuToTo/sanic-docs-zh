@@ -1,6 +1,6 @@
 # 自定义协议
 
-*Note: this is advanced usage, and most readers will not need such functionality.*
+*注意：这属于高级用法，大多数读者并不会使用到这个功能。*
 
 You can change the behavior of Sanic's protocol by specifying a custom
 protocol, which should be a subclass

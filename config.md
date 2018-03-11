@@ -27,7 +27,7 @@ In general the convention is to only have UPPERCASE configuration parameters. Th
 
 ## 加载配置
 
-There are several ways how to load configuration.
+有关于如何加载配置，这里有几种方式。
 
 ### 从环境变量中加载
 
@@ -54,7 +54,7 @@ app = Sanic('myapp')
 app.config.from_object(myapp.default_settings)
 ```
 
-You could use a class or any other object as well.
+你还可以使用类或是任何其它的对象。
 
 ### 从文件中加载
 
@@ -81,7 +81,7 @@ DB_NAME = 'appdb'
 DB_USER = 'appuser'
 ```
 
-## Builtin Configuration Values
+## 内建配置项值
 
 Out of the box there are just a few predefined values which can be overwritten when creating the application.
 
@@ -93,7 +93,7 @@ Out of the box there are just a few predefined values which can be overwritten w
     | KEEP_ALIVE         | True      | Disables keep-alive when False                |
     | KEEP_ALIVE_TIMEOUT | 5         | How long to hold a TCP connection open (sec)  |
 
-### The different Timeout variables
+### 不同的超时变量
 
 A request timeout measures the duration of time between the instant when a new open TCP connection is passed to the Sanic backend server, and the instant when the whole HTTP request is received. If the time taken exceeds the `REQUEST_TIMEOUT` value (in seconds), this is considered a Client Error so Sanic generates a HTTP 408 response and sends that to the client. Adjust this value higher if your clients routinely pass very large request payloads or upload requests very slowly.
 

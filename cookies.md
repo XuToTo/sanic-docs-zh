@@ -11,7 +11,7 @@ both read and write cookies, which are stored as key-value pairs.
     with by the client, use something like [itsdangerous](https://pythonhosted.org/itsdangerous/) to cryptographically
     sign the data.
 
-## Reading cookies
+## 读取 cookies
 
 A user's cookies can be accessed via the `Request` object's `cookies` dictionary.
 
@@ -24,7 +24,7 @@ async def test(request):
     return text("Test cookie set to: {}".format(test_cookie))
 ```
 
-## Writing cookies
+## 写入 cookies
 
 When returning a response, cookies can be set on the `Response` object.
 
@@ -40,7 +40,7 @@ async def test(request):
     return response
 ```
 
-## Deleting cookies
+## 删除 cookies
 
 Cookies can be removed semantically or explicitly.
 

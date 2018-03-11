@@ -1,12 +1,12 @@
 # Sanic 中文文档 [![Build Status](https://travis-ci.org/XuToTo/sanic-docs-zh.svg?branch=master)](https://travis-ci.org/XuToTo/sanic-docs-zh)
 
-Sanic is a Flask-like Python 3.5+ web server that's written to go fast.  It's based on the work done by the amazing folks at magicstack, and was inspired by [this article](https://magic.io/blog/uvloop-blazing-fast-python-networking/).
+Sanic 是一个类似 Flask 的 Python 3.5 Web 服务框架，在[这篇文章](https://magic.io/blog/uvloop-blazing-fast-python-networking/)的启发下，由一群来自 magicstack 的开发人员完成的，编写出来的目的是为了提供更高的执行效率。
 
-On top of being Flask-like, Sanic supports async request handlers.  This means you can use the new shiny async/await syntax from Python 3.5, making your code non-blocking and speedy.
+除了有着类似 Flask 风格之外，Sanic 还支持异步请求处理。这就意味着你可以使用 Python 3.5 中新的 `async`/`await` 语法来编写出非阻塞并且执行速度更快的代码。
 
-Sanic is developed [on GitHub](https://github.com/channelcat/sanic/). Contributions are welcome!
+Sanic [在 GitHub](https://github.com/channelcat/sanic/) 上进行开发。欢迎贡献代码！
 
-Sanic aspires to be simple
+Sanic 力求简洁
 
 ```python
 from sanic import Sanic
@@ -28,6 +28,6 @@ if __name__ == "__main__":
 
 业余翻译，总结自用
 
-如果发现了文档中的错误或是翻译不正确的地方，欢迎 [PR](https://github.com/XuToTo/sanic-docs-zh/pulls) (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+如果发现了文档中的错误或是翻译不正确的地方，欢迎批评指正并[提交 PR](https://github.com/XuToTo/sanic-docs-zh/pulls) (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
 
 如果文档没有及时更新请[提交 issue](https://github.com/XuToTo/sanic-docs-zh/issues) (๑•̀ω•́)ノ

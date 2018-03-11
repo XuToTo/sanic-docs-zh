@@ -9,10 +9,9 @@ flexible and pluggable manner.
 
 ## 我的第一个蓝图
 
-The following shows a very simple blueprint that registers a handler-function at
-the root `/` of your application.
+The following shows a very simple blueprint that registers a handler-function at the root `/` of your application.
 
-假如你把这个文件保存为 `my_blueprint.py`，之后你就可以把它导入到你的主应用程序中了。
+假设你把这个文件保存为 `my_blueprint.py`，之后你就可以把它导入到你的主应用程序中了。
 
 ```python
 from sanic.response import json
@@ -51,7 +50,7 @@ will look like:
 
 Blueprints may also be registered as part of a list or tuple, where the registrar will recursively cycle through any sub-sequences of blueprints and register them accordingly. The `Blueprint.group` method is provided to simplify this process, allowing a 'mock' backend directory structure mimicking what's seen from the front end. Consider this (quite contrived) example:
 
-```
+```text
 api/
 ├──content/
 │  ├──authors.py
@@ -62,7 +61,7 @@ api/
 app.py
 ```
 
-Initialization of this app's blueprint hierarchy could go as follows:
+可以像下面这样初始化应用的蓝图层级机制：
 
 ```python
 # api/content/authors.py
@@ -105,7 +104,7 @@ from .info import info
 api = Blueprint.group(content, info, url_prefix='/api')
 ```
 
-And registering these blueprints in `app.py` can now be done like so:
+可以像下面这样在 `app.py` 中完成这些蓝图的注册：
 
 ```python
 # app.py
@@ -130,6 +129,8 @@ decorator or `bp.add_websocket_route` method.
 ### 中间件
 
 Using blueprints allows you to also register middleware globally.
+
+还可以在蓝图中注册全局范围的中间件。
 
 ```python
 @bp.middleware
@@ -160,7 +161,6 @@ def ignore_404s(request, exception):
 Static files can be served globally, under the blueprint prefix.
 
 ```python
-
 # suppose bp.name == 'bp'
 
 bp.static('/web/path', '/folder/to/serve')
@@ -177,10 +177,10 @@ after the workers fork.
 
 可用的事件有：
 
-- `before_server_start`: Executed before the server begins to accept connections
-- `after_server_start`: Executed after the server begins to accept connections
-- `before_server_stop`: Executed before the server stops accepting connections
-- `after_server_stop`: Executed after the server is stopped and all requests are complete
+- `before_server_start`: 在服务开始接受连接之前执行
+- `after_server_start`: 在服务开始接受连接之后执行
+- `before_server_stop`: 在服务停止接受连接之前执行
+- `after_server_stop`: 在服务停止并且所有请求都已完成之后执行
 
 ```python
 bp = Blueprint('my_blueprint')
@@ -239,8 +239,7 @@ app.run(host='0.0.0.0', port=8000, debug=True)
 
 ## 使用 `url_for` 构建 URL
 
-如果你希望在蓝图中为一个路由生成一个 URL，remember that the endpoint name
-takes the format `<blueprint_name>.<handler_name>`. For example:
+如果你希望为一个蓝图中的路由生成 URL，记住端点名称要使用这样的格式 `<blueprint_name>.<handler_name>`。例如：
 
 ```python
 @blueprint_v1.route('/')

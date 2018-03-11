@@ -4,6 +4,8 @@ Static files and directories, such as an image file, are served by Sanic when
 registered with the `app.static` method. The method takes an endpoint URL and a
 filename. The file specified will then be accessible via the given endpoint.
 
+当通过 `app.static` 方法注册了静态文件和目录后
+
 ```python
 from sanic import Sanic
 from sanic.blueprints import Blueprint
