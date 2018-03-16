@@ -1,4 +1,4 @@
-# Sanic 中文文档 [![Build Status](https://travis-ci.org/XuToTo/sanic-docs-zh.svg?branch=master)](https://travis-ci.org/XuToTo/sanic-docs-zh)
+# Sanic 中文文档 [![Build Status](https://travis-ci.org/XuToTo/sanic-docs-zh.svg?branch=master)](https://travis-ci.org/XuToTo/sanic-docs-zh) ![License](https://img.shields.io/badge/license-CC%20BY%204.0-brightgreen.svg)
 
 Sanic 是一个类似 Flask 的 Python 3.5 Web 服务框架，在[这篇文章](https://magic.io/blog/uvloop-blazing-fast-python-networking/)的启发下，由一群来自 magicstack 的开发人员完成的，编写出来的目的是为了提供更高的执行效率。
 
@@ -31,3 +31,11 @@ if __name__ == "__main__":
 如果发现了文档中的错误或是翻译不正确的地方，欢迎批评指正并[提交 PR](https://github.com/XuToTo/sanic-docs-zh/pulls) (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
 
 如果文档没有及时更新请[提交 issue](https://github.com/XuToTo/sanic-docs-zh/issues) (๑•̀ω•́)ノ
+
+---
+
+## 许可
+
+> Creative Commons Attribution 4.0 International License (CC BY 4.0)
+>
+> http://creativecommons.org/licenses/by/4.0/
