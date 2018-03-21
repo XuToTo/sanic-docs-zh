@@ -36,6 +36,6 @@ if __name__ == "__main__":
 
 ## 许可
 
-> Creative Commons Attribution 4.0 International License (CC BY-NC 4.0)
+> Creative Commons Attribution 4.0 International License (CC BY-NC-SA 4.0)
 >
-> https://creativecommons.org/licenses/by-nc/4.0/deed.zh
+> https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh
