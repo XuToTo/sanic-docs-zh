@@ -38,4 +38,4 @@ if __name__ == "__main__":
 
 > Creative Commons Attribution 4.0 International License (CC BY-NC-SA 4.0)
 >
-> https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh
+> [署名 - 非商业性使用 - 相同方式共享 4.0 国际](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)
