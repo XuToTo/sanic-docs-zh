@@ -1,4 +1,4 @@
-# Sanic 中文文档 ![License](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-brightgreen.svg) [![Build Status](https://travis-ci.org/XuToTo/sanic-docs-zh.svg?branch=master)](https://travis-ci.org/XuToTo/sanic-docs-zh)
+# Sanic 中文文档 [![License](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-brightgreen.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0) [![Build Status](https://travis-ci.org/XuToTo/sanic-docs-zh.svg?branch=master)](https://travis-ci.org/XuToTo/sanic-docs-zh)
 
 Sanic 是一个类似 Flask 的 Python 3.5 Web 服务框架，在[这篇文章](https://magic.io/blog/uvloop-blazing-fast-python-networking/)的启发下，由一群来自 magicstack 的开发人员完成的，编写出来的目的是为了提供更高的执行效率。
 
