@@ -24,6 +24,8 @@ arguments from Sanic.
 - `request_timeout`: the number of seconds before a request times out.
 - `request_max_size`: an integer specifying the maximum size of a request, in bytes.
 
+---
+
 ## 示例
 
 An error occurs in the default protocol if a handler function does not return
