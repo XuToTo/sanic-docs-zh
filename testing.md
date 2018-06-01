@@ -1,8 +1,6 @@
-# Testing
+# 测试
 
-Sanic endpoints can be tested locally using the `test_client` object, which
-depends on the additional [aiohttp](https://aiohttp.readthedocs.io/en/stable/)
-library. 
+Sanic endpoints can be tested locally using the `test_client` object, which depends on the additional [aiohttp](https://aiohttp.readthedocs.io/en/stable/) library. 
 
 The `test_client` exposes `get`, `post`, `put`, `delete`, `patch`, `head` and `options` methods
 for you to run against your application. A simple example (using pytest) is like follows:
@@ -53,14 +51,14 @@ def test_post_json_request_includes_data():
     assert request.json.get('key1') == 'value1'
 ```
 
-More information about
-the available arguments to aiohttp can be found
+More information about the available arguments to aiohttp can be found
 [in the documentation for ClientSession](https://aiohttp.readthedocs.io/en/stable/client_reference.html#client-session).
+
+---
 
 ## pytest-sanic
 
-[pytest-sanic](https://github.com/yunstanford/pytest-sanic) is a pytest plugin, it helps you to test your code asynchronously.
-Just write tests like,
+[pytest-sanic](https://github.com/yunstanford/pytest-sanic) is a pytest plugin, it helps you to test your code asynchronously. Just write tests like,
 
 ```python
 async def test_sanic_db_find_by_id(app):
@@ -77,8 +75,7 @@ async def test_sanic_db_find_by_id(app):
     assert doc.team == "Lakers"
 ```
 
-[pytest-sanic](https://github.com/yunstanford/pytest-sanic) also provides some useful fixtures, like loop, unused_port,
-test_server, test_client.
+[pytest-sanic](https://github.com/yunstanford/pytest-sanic) also provides some useful fixtures, like loop, unused_port, test_server, test_client.
 
 ```python
 @pytest.yield_fixture
