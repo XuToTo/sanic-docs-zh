@@ -42,36 +42,38 @@ if __name__ == "__main__":
   app.run(debug=False, access_log=False)
 ```
 
+---
+
 ## 配置
 
-By default, log_config parameter is set to use sanic.log.LOGGING_CONFIG_DEFAULTS dictionary for configuration.
+By default, `log_config` parameter is set to use `sanic.log.LOGGING_CONFIG_DEFAULTS` dictionary for configuration.
 
 There are three `loggers` used in sanic, and **must be defined if you want to create your own logging configuration**:
 
-- root:<br>
+- root:
   Used to log internal messages.
 
-- sanic.error:<br>
+- sanic.error:
   Used to log error logs.
 
-- sanic.access:<br>
+- sanic.access:
   Used to log access logs.
 
-### Log format
+### 日志格式
 
 In addition to default parameters provided by python (asctime, levelname, message),
 Sanic provides additional parameters for access logger with:
 
-- host (str)<br>
+- host (str)
   request.ip
 
-- request (str)<br>
+- request (str)
   request.method + " " + request.url
 
-- status (int)<br>
+- status (int)
   response.status
 
-- byte (int)<br>
+- byte (int)
   len(response.body)
 
 The default access log format is
