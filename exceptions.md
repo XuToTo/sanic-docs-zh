@@ -1,13 +1,10 @@
 # 异常
 
-Exceptions can be thrown from within request handlers and will automatically be
-handled by Sanic. Exceptions take a message as their first argument, and can
-also take a status code to be passed back in the HTTP response.
+异常可以从请求处理器内部抛出，并且能够被 Sanic 自动处理。异常将异常信息作为它们的第一个参数，同时还可以携带状态码传递回 HTTP 的响应中。
 
 ## 抛出一个异常
 
-To throw an exception, simply `raise` the relevant exception from the
-`sanic.exceptions` module.
+只要从 `sanic.exceptions` 模块中 `raise` 相关的异常就可以抛出一个异常。
 
 ```python
 from sanic.exceptions import ServerError
@@ -17,7 +14,7 @@ async def i_am_ready_to_die(request):
     raise ServerError("Something bad happened", status_code=500)
 ```
 
-You can also use the `abort` function with the appropriate status code:
+你还可以使用带有合适状态码的 `abort` 函数：
 
 ```python
 from sanic.exceptions import abort
@@ -30,13 +27,11 @@ async def no_no(request):
         text("OK")
 ```
 
-## Handling exceptions
+---
 
-To override Sanic's default handling of an exception, the `@app.exception`
-decorator is used. The decorator expects a list of exceptions to handle as
-arguments. You can pass `SanicException` to catch them all! The decorated
-exception handler function must take a `Request` and `Exception` object as
-arguments.
+## 处理异常
+
+可以通过 `@app.exception` 装饰器来重写 Sanic 默认的异常处理器。该装饰器接受一个需要处理异常的列表作为参数。你可以传入 `SanicException` 来捕获所有的异常。被装饰的异常处理函数必须接受 `Request` 和 `Exception` 对象作为参数。
 
 ```python
 from sanic.response import text
@@ -47,12 +42,14 @@ async def ignore_404s(request, exception):
     return text("Yep, I totally found the page: {}".format(request.url))
 ```
 
-## Useful exceptions
+---
 
-Some of the most useful exceptions are presented below:
+## 常用异常
 
-- `NotFound`: called when a suitable route for the request isn't found.
-- `ServerError`: called when something goes wrong inside the server. This
-  usually occurs if there is an exception raised in user code.
+下面是一些常用的异常：
 
-See the `sanic.exceptions` module for the full list of exceptions to throw.
+- `NotFound`: 当没有为请求找到合适的路由时会被调用
+
+- `ServerError`: 当服务内部出现错误时会被调用。这个异常的出现通常是因为在用户代码中有异常抛出。
+
+参看 `sanic.exceptions` 模块获取所有可以用来抛出的异常列表。
