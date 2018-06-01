@@ -1,6 +1,7 @@
 # 扩展
 
-A list of Sanic extensions created by the community.
+这是一份由社区人员为 Sanic 开发的扩展插件列表：
+
 - [Sanic-Plugins-Framework](https://github.com/ashleysommer/sanicpluginsframework): Library for easily creating and using Sanic plugins.
 - [Sessions](https://github.com/subyraman/sanic_session): Support for sessions.
   Allows using redis, memcache or an in memory store.
@@ -16,7 +17,7 @@ A list of Sanic extensions created by the community.
 - [Limiter](https://github.com/bohea/sanic-limiter): Rate limiting for sanic.
 - [Sanic EnvConfig](https://github.com/jamesstidard/sanic-envconfig): Pull environment variables into your sanic config.
 - [Babel](https://github.com/lixxu/sanic-babel): Adds i18n/l10n support to Sanic applications with the help of the
-`Babel` library
+  `Babel` library
 - [Dispatch](https://github.com/ashleysommer/sanic-dispatcher): A dispatcher inspired by `DispatcherMiddleware` in werkzeug. Can act as a Sanic-to-WSGI adapter.
 - [Sanic-OAuth](https://github.com/Sniedes722/Sanic-OAuth): OAuth Library for connecting to & creating your own token providers.
 - [sanic-oauth](https://gitlab.com/SirEdvin/sanic-oauth): OAuth Library with many provider and OAuth1/OAuth2 support.
@@ -27,3 +28,7 @@ A list of Sanic extensions created by the community.
 - [sanic-transmute](https://github.com/yunstanford/sanic-transmute): A Sanic extension that generates APIs from python function and classes, and also generates Swagger UI/documentation automatically.
 - [pytest-sanic](https://github.com/yunstanford/pytest-sanic): A pytest plugin for Sanic. It helps you to test your code asynchronously.
 - [jinja2-sanic](https://github.com/yunstanford/jinja2-sanic): a jinja2 template renderer for Sanic.([Documentation](http://jinja2-sanic.readthedocs.io/en/latest/))
+- [GINO](https://github.com/fantix/gino): An asyncio ORM on top of SQLAlchemy core, delivered with a Sanic extension. ([Documentation](https://python-gino.readthedocs.io/))
+- [Sanic-Auth](https://github.com/pyx/sanic-auth): A minimal backend agnostic session-based user authentication mechanism for Sanic.
+- [Sanic-CookieSession](https://github.com/pyx/sanic-cookiesession): A client-side only, cookie-based session, similar to the built-in session in Flask.
+- [Sanic-WTF](https://github.com/pyx/sanic-wtf): Sanic-WTF makes using WTForms with Sanic and CSRF (Cross-Site Request Forgery) protection a little bit easier.
