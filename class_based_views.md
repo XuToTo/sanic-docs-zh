@@ -1,4 +1,4 @@
-# Class-Based Views
+# 类视图
 
 Class-based views are simply classes which implement response behaviour to
 requests. They provide a way to compartmentalise handling of different HTTP
@@ -64,7 +64,9 @@ class SimpleAsyncView(HTTPMethodView):
 app.add_route(SimpleAsyncView.as_view(), '/')
 ```
 
-## URL parameters
+---
+
+## URL 参数
 
 If you need any URL parameters, as discussed in the routing guide, include them
 in the method definition.
@@ -78,7 +80,9 @@ class NameView(HTTPMethodView):
 app.add_route(NameView.as_view(), '/<name>')
 ```
 
-## Decorators
+---
+
+## 装饰器
 
 If you want to add any decorators to the class, you can set the `decorators`
 class variable. These will be applied to the class when `as_view` is called.
@@ -110,7 +114,9 @@ class ViewWithSomeDecorator(HTTPMethodView):
         return text("Hello I don't have any decorators")
 ```
 
-## URL Building
+---
+
+## URL 的构建
 
 If you wish to build a URL for an HTTPMethodView, remember that the class name will be the endpoint
 that you will pass into `url_for`. For example:
@@ -128,7 +134,9 @@ class SpecialClassView(HTTPMethodView):
 app.add_route(SpecialClassView.as_view(), '/special_class_view')
 ```
 
-## Using CompositionView
+---
+
+## 使用复合视图
 
 As an alternative to the `HTTPMethodView`, you can use `CompositionView` to
 move handler functions outside of the view class.
