@@ -5,11 +5,15 @@ Instead of adding routes to the application instance, blueprints define similar
 methods for adding routes, which are then registered with the application in a
 flexible and pluggable manner.
 
+在一个应用内，蓝图时用作子路由的对象。
+
+除了直接向应用实例中添加路由外，蓝图定义了相似的方法来添加路由，以一种灵活可拔插的方式在应用内注册。
+
 蓝图对于大型的应用程序来说十分有用，你可以将应用程序的逻辑可以拆分成几个组或是职责分区。
 
-## 我的第一个蓝图
+## 第一个蓝图
 
-The following shows a very simple blueprint that registers a handler-function at the root `/` of your application.
+下面展示了一个非常简单的蓝图，它在应用的 `/` 根路由上注册了一个处理函数。
 
 假设你把这个文件保存为 `my_blueprint.py`，之后你就可以把它导入到你的主应用程序中了。
 
@@ -23,6 +27,8 @@ bp = Blueprint('my_blueprint')
 async def bp_root(request):
     return json({'my': 'blueprint'})
 ```
+
+---
 
 ## 注册蓝图
 
@@ -45,6 +51,8 @@ will look like:
 ```python
 [Route(handler=<function bp_root at 0x7f908382f9d8>, methods=None, pattern=re.compile('^/$'), parameters=[])]
 ```
+
+---
 
 ## 蓝图的分组和嵌套
 
@@ -117,6 +125,8 @@ app = Sanic(__name__)
 app.blueprint(api)
 ```
 
+---
+
 ## 使用蓝图
 
 蓝图有许多和应用实例相同的功能。
@@ -127,8 +137,6 @@ WebSocket handlers can be registered on a blueprint using the `@bp.websocket`
 decorator or `bp.add_websocket_route` method.
 
 ### 中间件
-
-Using blueprints allows you to also register middleware globally.
 
 还可以在蓝图中注册全局范围的中间件。
 
@@ -169,6 +177,8 @@ bp.static('/web/path', '/folder/to/server', name='uploads')
 app.url_for('static', name='bp.uploads', filename='file.txt') == '/bp/web/path/file.txt'
 ```
 
+---
+
 ## 启动和停止
 
 Blueprints can run functions during the start and stop process of the server.
@@ -194,6 +204,8 @@ async def setup_connection(app, loop):
 async def close_connection(app, loop):
     await database.close()
 ```
+
+---
 
 ## 用例：API 的版本控制
 
@@ -236,6 +248,8 @@ app.blueprint(blueprint_v2, url_prefix='/v2')
 
 app.run(host='0.0.0.0', port=8000, debug=True)
 ```
+
+---
 
 ## 使用 `url_for` 构建 URL
 
