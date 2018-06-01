@@ -1,4 +1,4 @@
-# Deploying
+# 部署
 
 Deploying Sanic is made simple by the inbuilt webserver. After defining an
 instance of `sanic.Sanic`, we can call the `run` method with the following
@@ -11,10 +11,12 @@ keyword arguments:
 - `sock` *(default `None`)*: Socket for the server to accept connections from.
 - `workers` *(default `1`)*: Number of worker processes to spawn.
 - `loop` *(default `None`)*: An `asyncio`-compatible event loop. If none is
-                             specified, Sanic creates its own event loop.
+         specified, Sanic creates its own event loop.
 - `protocol` *(default `HttpProtocol`)*: Subclass
   of
   [asyncio.protocol](https://docs.python.org/3/library/asyncio-protocol.html#protocol-classes).
+
+---
 
 ## Workers
 
@@ -28,7 +30,9 @@ app.run(host='0.0.0.0', port=1337, workers=4)
 Sanic will automatically spin up multiple processes and route traffic between
 them. We recommend as many workers as you have available cores.
 
-## Running via command
+---
+
+## 通过命令行运行
 
 If you like using command line arguments, you can launch a Sanic server by
 executing the module. For example, if you initialized Sanic as `app` in a file
@@ -45,7 +49,9 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=1337, workers=4)
 ```
 
-## Running via Gunicorn
+---
+
+## 通过 Gunicorn 运行
 
 [Gunicorn](http://gunicorn.org/) ‘Green Unicorn’ is a WSGI HTTP Server for UNIX.
 It’s a pre-fork worker model ported from Ruby’s Unicorn project.
@@ -63,7 +69,10 @@ of the memory leak.
 
 See the [Gunicorn Docs](http://docs.gunicorn.org/en/latest/settings.html#max-requests) for more information.
 
-## Asynchronous support
+---
+
+## 异步支持
+
 This is suitable if you *need* to share the sanic process with other applications, in particular the `loop`.
 However be advised that this method does not support using multiple processes, and is not the preferred way
 to run the app in general.
