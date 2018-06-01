@@ -20,6 +20,8 @@ async def print_on_response(request, response):
     print("I print when a response is returned by the server")
 ```
 
+---
+
 ## 修改请求和响应
 
 中间件可以修改传入的请求或是响应参数，*只要不返回它*。以下示例展示了部分用例：
@@ -38,7 +40,9 @@ async def prevent_xss(request, response):
 app.run(host="0.0.0.0", port=8000)
 ```
 
-上面的代码将会按顺序应用两个中间件。第一个 **custom_banner** 中间件将会把 HTTP 响应头部中的 *Server* 改成 *Fake-Server*，第二个中间件 **prevent_xss** 会添加用来阻止跨站脚本（XSS）攻击的 HTTP 头部。这两个函数都会在用户函数返回响应后被调用。
+上面的代码将会按顺序应用两个中间件。第一个 **custom_banner** 中间件将会把 HTTP 响应头部中的 *Server* 改成 *Fake-Server*，第二个中间件 **prevent_xss** 会添加用来阻止跨站脚本（XSS）攻击的 HTTP 头部。这两个函数都会在用户函数返回响应后被调用（译注：即这两个 response 类型的中间件是在用户定义的处理函数之后生效的）。
+
+---
 
 ## 提前响应
 
@@ -56,6 +60,8 @@ async def halt_response(request, response):
     return text('I halted the response')
 ```
 
+---
+
 ## 监听器
 
 如果你想在服务启动或关闭时执行启动/终止代码，你可以使用下面这些监听器：
@@ -65,7 +71,7 @@ async def halt_response(request, response):
 - `before_server_stop`
 - `after_server_stop`
 
-这些监听器以装饰器的形式应用在函数上，它们接受 `app` 对象还有 `asyncio` 循环。
+这些监听器以装饰器的形式应用在函数上，它们接受 `app` 对象还有 `asyncio` 事件循环对象。
 
 例如：
 
@@ -100,7 +106,7 @@ async def setup_db(app, loop):
 app.register_listener(setup_db, 'before_server_start')
 ```
 
-如果你想要在循环开始后计划执行一个后台任务，Sanic 提供了 `add_task` 方法可以轻松实现。
+如果你想要在循环开始后计划执行一个后台任务，可以通过 Sanic 提供的 `add_task` 方法轻松实现。
 
 ```python
 async def notify_server_started_after_five_seconds():
