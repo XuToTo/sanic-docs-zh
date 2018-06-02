@@ -6,19 +6,19 @@ request types at the same endpoint. Rather than defining and decorating three
 different handler functions, one for each of an endpoint's supported request
 type, the endpoint can be assigned a class-based view.
 
+类视图只是种实现了请求对应的响应行为的类。它提供了一种可以将同一个端点的不同 HTTP 请求类型划分开来的处理方式。
+
+如果一个类视图满足一个端点所支持的请求类型，那么就可以为这个端点指派一个类视图。
+
+而不是为此定义和装饰不同的处理函数。
+
 ## 定义视图
 
-A class-based view should subclass `HTTPMethodView`. You can then implement
-class methods for every HTTP request type you want to support. If a request is
-received that has no defined method, a `405: Method not allowed` response will
-be generated.
+一个类视图应该是 `HTTPMethodView` 的子类。你可以为你每个想支持的 HTTP 请求类型实现对应的类方法。如果收到的请求类型没有定义对应的方法就会生成一个 `405: Method not allowed` 响应。
 
-To register a class-based view on an endpoint, the `app.add_route` method is
-used. The first argument should be the defined class with the method `as_view`
-invoked, and the second should be the URL endpoint.
+要在一个端点上注册类视图，需要使用 `app.add_route` 方法。第一个参数应该是一个调用了 `as_view` 方法的定义类，第二个参数是端点的 URL。
 
-The available methods are `get`, `post`, `put`, `patch`, and `delete`. A class
-using all these methods would look like the following.
+可用的方法有 `get`、`post`、`put`、`patch` 和 `delete`。下面是一个使用了所有这些方法的类：
 
 ```python
 from sanic import Sanic
@@ -47,7 +47,7 @@ class SimpleView(HTTPMethodView):
 app.add_route(SimpleView.as_view(), '/')
 ```
 
-You can also use `async` syntax.
+你还可以使用 `async` 关键字。
 
 ```python
 from sanic import Sanic
@@ -68,8 +68,7 @@ app.add_route(SimpleAsyncView.as_view(), '/')
 
 ## URL 参数
 
-If you need any URL parameters, as discussed in the routing guide, include them
-in the method definition.
+如果你需要获取 URL 参数，可以像之前路由章节中所说的那样，在定义方法的时候包含它们。
 
 ```python
 class NameView(HTTPMethodView):
@@ -84,8 +83,7 @@ app.add_route(NameView.as_view(), '/<name>')
 
 ## 装饰器
 
-If you want to add any decorators to the class, you can set the `decorators`
-class variable. These will be applied to the class when `as_view` is called.
+如果你想向视图类中添加装饰器的话，你可以设置 `decorators` 类变量。它们将会在调用 `as_view` 时应用到类上。
 
 ```python
 class ViewWithDecorator(HTTPMethodView):
@@ -100,7 +98,7 @@ class ViewWithDecorator(HTTPMethodView):
 app.add_route(ViewWithDecorator.as_view(), '/url')
 ```
 
-But if you just want to decorate some functions and not all functions, you can do as follows:
+但是如果你只想装饰个别的函数而不是所有的话，你可以像下面这么做：
 
 ```python
 class ViewWithSomeDecorator(HTTPMethodView):
@@ -118,8 +116,7 @@ class ViewWithSomeDecorator(HTTPMethodView):
 
 ## URL 的构建
 
-If you wish to build a URL for an HTTPMethodView, remember that the class name will be the endpoint
-that you will pass into `url_for`. For example:
+如果你希望为一个 `HTTPMethodView` 构建 URL 的话，要记得将类名作为端点传入 `url_for` 中。例如：
 
 ```python
 @app.route('/')
@@ -136,17 +133,11 @@ app.add_route(SpecialClassView.as_view(), '/special_class_view')
 
 ---
 
-## 使用复合视图
+## 使用组合视图
 
-As an alternative to the `HTTPMethodView`, you can use `CompositionView` to
-move handler functions outside of the view class.
+你可以使用 `CompositionView` 来将处理函数移到视图类的外部，以此来替换 `HTTPMethodView`。
 
-Handler functions for each supported HTTP method are defined elsewhere in the
-source, and then added to the view using the `CompositionView.add` method. The
-first parameter is a list of HTTP methods to handle (e.g. `['GET', 'POST']`),
-and the second is the handler function. The following example shows
-`CompositionView` usage with both an external handler function and an inline
-lambda:
+每个所支持的 HTTP 方法对应的处理函数，只要是在代码别处定义的，都需要通过 `Composition.add` 方法添加到视图中。第一个参数是能够处理的 HTTP 方法的列表（比如 `['GET', 'POST']`），第二个参数则是处理函数。下面的示例展示了在 `CompositionView` 中使用外部定义的处理函数以及内联化 lambda 的用法： 
 
 ```python
 from sanic import Sanic
@@ -162,8 +153,8 @@ view = CompositionView()
 view.add(['GET'], get_handler)
 view.add(['POST', 'PUT'], lambda request: text('I am a post/put method'))
 
-# Use the new view to handle requests to the base URL
+# 使用新的视图来处理根 URL 对应的请求
 app.add_route(view, '/')
 ```
 
-Note: currently you cannot build a URL for a CompositionView using `url_for`.
+注意：目前你还不能通过 `url_for` 为 `CompositionView` 构建 URL。
