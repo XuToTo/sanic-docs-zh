@@ -1,16 +1,6 @@
 # 类视图
 
-Class-based views are simply classes which implement response behaviour to
-requests. They provide a way to compartmentalise handling of different HTTP
-request types at the same endpoint. Rather than defining and decorating three
-different handler functions, one for each of an endpoint's supported request
-type, the endpoint can be assigned a class-based view.
-
-类视图只是种实现了请求对应的响应行为的类。它提供了一种可以将同一个端点的不同 HTTP 请求类型划分开来的处理方式。
-
-如果一个类视图满足一个端点所支持的请求类型，那么就可以为这个端点指派一个类视图。
-
-而不是为此定义和装饰不同的处理函数。
+类视图只是种实现了请求对应的响应行为的类。它提供了一种可以将同一个端点的不同 HTTP 请求类型划分开来的处理方式。端点可以被分配一个类视图，而不是通过在不同的处理函数上定义和装饰上每个端点所支持的请求类型。
 
 ## 定义视图
 
