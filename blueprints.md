@@ -1,15 +1,6 @@
 # 蓝图
 
-Blueprints are objects that can be used for sub-routing within an application.
-Instead of adding routes to the application instance, blueprints define similar
-methods for adding routes, which are then registered with the application in a
-flexible and pluggable manner.
-
-在一个应用内，蓝图时用作子路由的对象。
-
-除了直接向应用实例中添加路由外，蓝图定义了相似的方法来添加路由，以一种灵活可拔插的方式在应用内注册。
-
-蓝图对于大型的应用程序来说十分有用，你可以将应用程序的逻辑可以拆分成几个组或是职责分区。
+在一个应用内，蓝图是种可以被用作于子路由的对象。除了直接向应用实例中添加路由外，蓝图也定义了类似的方法来添加路由，但是蓝图可以以一种灵活的可拔插的方式在应用内注册。蓝图对于大型的应用程序来说十分有用，你可以将应用程序的逻辑可以拆分成几个组或是职责分区。
 
 ## 第一个蓝图
 
@@ -44,9 +35,7 @@ app.blueprint(bp)
 app.run(host='0.0.0.0', port=8000, debug=True)
 ```
 
-This will add the blueprint to the application and register any routes defined
-by that blueprint. In this example, the registered routes in the `app.router`
-will look like:
+这会将一个蓝图添加到应用中，并且注册了所有蓝图所定义的路由。在这个例子中，注册到 `app.router` 中的路由看上去是下面这个样子的：
 
 ```python
 [Route(handler=<function bp_root at 0x7f908382f9d8>, methods=None, pattern=re.compile('^/$'), parameters=[])]
@@ -56,7 +45,9 @@ will look like:
 
 ## 蓝图的分组和嵌套
 
-Blueprints may also be registered as part of a list or tuple, where the registrar will recursively cycle through any sub-sequences of blueprints and register them accordingly. The `Blueprint.group` method is provided to simplify this process, allowing a 'mock' backend directory structure mimicking what's seen from the front end. Consider this (quite contrived) example:
+蓝图还可以注册为一个列表或是元组的一部分，注册器会循环递归蓝图序列中的每个子序列，然后依次注册它们。`Blueprint.group` 可以用于简化这个过程，它允许以一种模仿后端目录结构的形式来模拟从前端所看到的内容。
+
+看一下下面这个（十分刻意的）例子：
 
 ```text
 api/
@@ -133,12 +124,11 @@ app.blueprint(api)
 
 ### WebSocket 路由
 
-WebSocket handlers can be registered on a blueprint using the `@bp.websocket`
-decorator or `bp.add_websocket_route` method.
+WebSocket 的处理函数可以通过 `@bp.websocket` 装饰器或是 `bp.add_websocket_route` 方法注册到蓝图上。
 
 ### 中间件
 
-还可以在蓝图中注册全局范围的中间件。
+还可以为对应的整个蓝图注册中间件。
 
 ```python
 @bp.middleware
@@ -156,7 +146,7 @@ async def halt_response(request, response):
 
 ### 异常
 
-Exceptions can be applied exclusively to blueprints globally.
+异常处理可以应用于对应的整个蓝图。
 
 ```python
 @bp.exception(NotFound)
@@ -166,7 +156,7 @@ def ignore_404s(request, exception):
 
 ### 静态文件
 
-Static files can be served globally, under the blueprint prefix.
+可以通过添加蓝图的前缀在整个应用内使用静态文件服务。
 
 ```python
 # suppose bp.name == 'bp'
@@ -181,9 +171,7 @@ app.url_for('static', name='bp.uploads', filename='file.txt') == '/bp/web/path/f
 
 ## 启动和停止
 
-Blueprints can run functions during the start and stop process of the server.
-If running in multiprocessor mode (more than 1 worker), these are triggered
-after the workers fork.
+蓝图可以在服务进程启动和停止时执行函数。如果是运行在多进程模式下（超过 1 个 worker）的话，这些函数将会在 worker fork 完成后被触发。
 
 可用的事件有：
 
@@ -209,12 +197,9 @@ async def close_connection(app, loop):
 
 ## 用例：API 的版本控制
 
-Blueprints can be very useful for API versioning, where one blueprint may point
-at `/v1/<routes>`, and another pointing at `/v2/<routes>`.
+蓝图对于 API 的版本控制来说非常有用，可以让一个蓝图指向 `/v1/<routes>`，然后让另一个指向 `/v2/<routes>`。
 
-When a blueprint is initialised, it can take an optional `url_prefix` argument,
-which will be prepended to all routes defined on the blueprint. This feature
-can be used to implement our API versioning scheme.
+在初始化一个蓝图时，可以为其添加一个可选的 `url_prefix` 参数，这样可以为所有在蓝图中定义的路由添加一个前缀。这个特性可以作为模式来实现我们的 API 的版本控制。
 
 ```python
 # blueprints.py
@@ -233,9 +218,7 @@ async def api_v2_root(request):
     return text('Welcome to version 2 of our documentation')
 ```
 
-When we register our blueprints on the app, the routes `/v1` and `/v2` will now
-point to the individual blueprints, which allows the creation of *sub-sites*
-for each API version.
+当我们把蓝图注册到 `app` 后，路由 `/v1` 和 `/v2` 就会指向各自的蓝图，这样就可以为每一个版本的 API 创建各自子站点。
 
 ```python
 # main.py
