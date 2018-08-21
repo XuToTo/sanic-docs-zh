@@ -1,6 +1,4 @@
-# Summary
-
-* [Sanic 0.7.0 中文文档](README.md)
+* [介绍](README.md)
 * [入门](getting_started.md)
 * [路由](routing.md)
   * [请求参数](routing.md#请求参数)
@@ -12,7 +10,7 @@
   * [自定义路由名称](routing.md#自定义路由名称)
   * [为静态文件构建 URL](routing.md#为静态文件构建-url)
 * [请求数据](request_data.md)
-  *[使用 `get` 和 `getlist` 获取值](request_data.md#使用-get-和-getlist-获取值)
+  * [使用 `get` 和 `getlist` 获取值](request_data.md#使用-get-和-getlist-获取值)
 * [响应](response.md)
   * [纯文本](response.md#纯文本)
   * [HTML](response.md#html)
@@ -43,4 +41,3 @@
 * [部署](deploying.md)
 * [扩展](extensions.md)
 * [贡献](contributing.md)
-* [API 参考]()
